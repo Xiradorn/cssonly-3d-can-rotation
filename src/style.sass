@@ -1,110 +1,137 @@
-@import url('https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Inspiration&family=Orbitron:wght@400..900&family=Pirata+One&family=Poiret+One&display=swap')
+
+:root
+	--bg-color: 205, 205, 205
+	--grid-color: 0, 0, 0
+	--grid-opacity: .1
+	--gradient-opacity: .5
+
+	--grid: rgb(var(--grid-color), var(--grid-opacity))
+	--gradient: rgb(var(--bg-color), var(--gradient-opacity))
+
+	--mockup: url(/assets/images/mockup.png)
+	--soda-1: url(/assets/images/bg.png)
+	--soda-2: url(/assets/images/bg2.png)
 
 body
-	min-height: 100vh
-	background-image: repeating-linear-gradient(to right, transparent 0 150px, #0002 150px 151px), repeating-linear-gradient(to bottom, transparent 0 150px, #0002 150px 151px), linear-gradient(to right, #CDCDCDcc, #CDCDCDcc), url('./assets/images/bg.jpg')
-	background-color: #CDCDCD
+	height: 100vh
+	background-image: repeating-linear-gradient(to right, transparent 0 100px, var(--grid) 100px 101px), repeating-linear-gradient(to bottom, transparent 0 100px, var(--grid) 100px 101px), linear-gradient(to right, var(--gradient), var(--gradient)), url('./assets/images/bg.jpg')
+	background-color: var(--bg-color)
 	background-size: auto, auto, auto, cover
 	background-position: center
 	padding: 0
 	margin: 0
-	font-family: "Poppins", system-ui
+	font-family: "Inspiration", cursive
+	font-weight: 400
 	overflow: hidden
 
-header
-	width: min(1200px, 90vw)
-	margin: 0 auto
-	display: flex
-	justify-content: space-between
-	padding-top: 50px
-	height: 0
-	flex-wrap: wrap
+	header
+		width: min(1280px, 90vw)
+		margin: 0 auto
+		display: flex
+		flex-wrap: wrap
+		height: 0
 
-	h1
-		font-family: "Karantina", system-ui
-		font-size: 16vw
-		line-height: .8em
-		margin: 0
+		h1
+			padding-top: 50px
+			font-family: "Orbitron", system-ui
+			font-size: 14vw
+			margin: 0
+			line-height: .8em
 
-	h4
-		margin: 0
-		font-weight: 400
+		img
+			max-width: 100%
 
-.banner
-	height: 100vh
-	position: relative
-	// margin-top: -50px
-	// overflow: hidden
+		h4
+			font-size: 4vw
+			margin: 0
+			line-height: .8em
 
-	.product
-		width: 500px
-		transform: translateX(-50%)
-		position: absolute
-		left: 50%
-		bottom: 50px
-		background: lime
-		z-index: 2
-		transition: .7s
+	.banner
+		position: relative
+		height: 100vh
+		overflow: hidden
 
-		.soda
-			--left: 0
-			--url: url('./assets/images/bg.png')
+		.product
+			width: 500px
+			height: 500px
 			position: absolute
-			bottom: 50px
+			bottom: 170px
 			left: 50%
 			transform: translateX(-50%)
-			background: var(--url) var(--left), url('./assets/images/mockup.png') 0 0
-			background-size: auto 100%
-			width: 280px
-			aspect-ratio: 2 / 4
-			background-blend-mode: multiply
-			mask-image: url('./assets/images/mockup.png')
-			mask-size: auto 100%
-			transition: .8s
+			z-index: 1
+			transition: .7s
+			rotate: 0deg
 
-			&:nth-child(2)
-				--url: url('./assets/images/bg2.png')
-				opacity: 0
-
-		&:hover
-			bottom: 100px
+			@media screen and (max-width: 767px)
+				width: 350px
+				height: 350px
 
 			.soda
-				--left: 700px
+				--left: 0
+				--url: var(--soda-1)
+
+				position: absolute
+				background: var(--url) var(--left) 0, var(--mockup)
+				background-size: auto 100%
+				width: 280px
+				aspect-ratio: 2 / 4
+				background-blend-mode: multiply
+				mask-image: var(--mockup)
+				mask-size: auto 100%
+				transition: .8s
+				left: 50%
+				transform: translateX(-50%)
+
+				@media screen and (max-width: 767px)
+					width: 200px
 
 				&:nth-child(2)
 					opacity: 0
 
+			&:hover
+				rotate: 5deg
+
+			&:hover .soda
+				--left: 1000px
+				transform: translateX(-50%) translateY(-50px)
+
 				&:nth-child(2)
 					opacity: 1
 
-	.rocks
-		position: absolute
-		inset: 0
-		width: 100%
-		pointer-events: none
-
-		& img
+		.rocks
 			position: absolute
-			transition: .7s
+			inset: 0 0 0 0
+			pointer-events: none
 
-		& img:nth-child(1)
-			height: 130px
-			left: 50%
-			bottom: 0
-			z-index: 1
-			transform: translateX(-50%)
+			img
+				position: absolute
+				transition: .7s
 
-		& img:nth-child(2)
-			height: 50%
-			left: 0
-			bottom: 0
+				&:nth-child(1)
+					height: 170px
+					bottom: -30px
+					left: 50%
+					transform: translateX(-50%)
 
-		& img:nth-child(3)
-			height: 100%
-			right: 0
-			bottom: -100px
-			rotate: -25deg
+				&:nth-child(2)
+					height: 55%
+					bottom: 0
+					left: 0
+
+					@media screen and (max-width: 767px)
+						height: 35%
+						left: -100px
+
+				&:nth-child(3)
+					height: 105%
+					right: 0
+					bottom: -100px
+					rotate: -25deg
+
+					@media screen and (max-width: 767px)
+						height: 55%
+						right: -90px
 
 	&:has(.product:hover) .rocks img
 		&:nth-child(1)
