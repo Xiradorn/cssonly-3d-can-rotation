@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+
+body
+	min-height: 100vh
+	background-image: repeating-linear-gradient(to right, transparent 0 150px, #0002 150px 151px), repeating-linear-gradient(to bottom, transparent 0 150px, #0002 150px 151px), linear-gradient(to right, #CDCDCDcc, #CDCDCDcc), url('./assets/images/bg.jpg')
+	background-color: #CDCDCD
+	background-size: auto, auto, auto, cover
+	background-position: center
+	padding: 0
+	margin: 0
+	font-family: "Poppins", system-ui
+	overflow: hidden
+
+header
+	width: min(1200px, 90vw)
+	margin: 0 auto
+	display: flex
+	justify-content: space-between
+	padding-top: 50px
+	height: 0
+	flex-wrap: wrap
+
+	h1
+		font-family: "Karantina", system-ui
+		font-size: 16vw
+		line-height: .8em
+		margin: 0
+
+	h4
+		margin: 0
+		font-weight: 400
+
+.banner
+	height: 100vh
+	position: relative
+	// margin-top: -50px
+	// overflow: hidden
+
+	.product
+		width: 500px
+		transform: translateX(-50%)
+		position: absolute
+		left: 50%
+		bottom: 50px
+		background: lime
+		z-index: 2
+		transition: .7s
+
+		.soda
+			--left: 0
+			--url: url('./assets/images/bg.png')
+			position: absolute
+			bottom: 50px
+			left: 50%
+			transform: translateX(-50%)
+			background: var(--url) var(--left), url('./assets/images/mockup.png') 0 0
+			background-size: auto 100%
+			width: 280px
+			aspect-ratio: 2 / 4
+			background-blend-mode: multiply
+			mask-image: url('./assets/images/mockup.png')
+			mask-size: auto 100%
+			transition: .8s
+
+			&:nth-child(2)
+				--url: url('./assets/images/bg2.png')
+				opacity: 0
+
+		&:hover
+			bottom: 100px
+
+			.soda
+				--left: 700px
+
+				&:nth-child(2)
+					opacity: 0
+
+				&:nth-child(2)
+					opacity: 1
+
+	.rocks
+		position: absolute
+		inset: 0
+		width: 100%
+		pointer-events: none
+
+		& img
+			position: absolute
+			transition: .7s
+
+		& img:nth-child(1)
+			height: 130px
+			left: 50%
+			bottom: 0
+			z-index: 1
+			transform: translateX(-50%)
+
+		& img:nth-child(2)
+			height: 50%
+			left: 0
+			bottom: 0
+
+		& img:nth-child(3)
+			height: 100%
+			right: 0
+			bottom: -100px
+			rotate: -25deg
+
+	&:has(.product:hover) .rocks img
+		&:nth-child(1)
+			transform: translateX(-50%) translateY(50px)
+
+		&:nth-child(2)
+			transform: translateX(-100px) translateY(100px)
+
+		&:nth-child(3)
+			transform: translateX(100px) translateY(100px)
